@@ -1,6 +1,4 @@
 """
-Part 3 of the Assignment
-
 Mirrors the structure of iam_agent.py exactly — same run_agent() interface,
 same output schema, same tool-use loop pattern — but with GCP-specific tools
 and classification criteria.
