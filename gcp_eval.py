@@ -1,6 +1,4 @@
 """
-Part 3 of the Assignment
-
 Run through cloud_router so the test proves end-to-end multi-cloud routing.
 """
 
