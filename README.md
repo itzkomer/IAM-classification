@@ -12,12 +12,10 @@ The project follows a modular **Router Pattern**, allowing it to scale across di
 
 The `cloud_router.py` acts as the single entry point. It performs $O(1)$ provider detection by inspecting the top-level JSON keys:
 
-* 
-**AWS:** Detected via the `"Statement"` key.
+* **AWS:** Detected via the `"Statement"` key.
 
 
-* 
-**GCP:** Detected via the `"bindings"` key.
+* **GCP:** Detected via the `"bindings"` key.
 
 
 
@@ -25,16 +23,13 @@ The `cloud_router.py` acts as the single entry point. It performs $O(1)$ provide
 
 Each provider has a dedicated agent (e.g., `iam_agent.py`, `gcp_agent.py`) that follows a controlled analysis loop:
 
-* 
-**Deterministic Tools:** Python functions extract objective facts (wildcards, resource scopes, sensitive roles) to prevent LLM hallucinations.
+* **Deterministic Tools:** Python functions extract objective facts (wildcards, resource scopes, sensitive roles) to prevent LLM hallucinations.
 
 
-* 
-**LLM Orchestration:** A Claude-powered agent iterates through these tools, requiring a full suite of tests before submitting a verdict.
+* **LLM Orchestration:** A Claude-powered agent iterates through these tools, requiring a full suite of tests before submitting a verdict.
 
 
-* 
-**Remediation:** To avoid "eager remediator" failure, the system completes the full classification before initiating a separate call to generate a fixed policy and change log.
+* **Remediation:** To avoid "eager remediator" failure, the system completes the full classification before initiating a separate call to generate a fixed policy and change log.
 
 
 
@@ -49,9 +44,7 @@ Policies are classified as **WEAK** or **STRONG** based on provider-specific sec
 | **AWS** | Wildcard actions/resources without conditions (W1/W2), missing MFA on privilege escalation (W3), or use of `NotAction` (W4). | Explicit actions, specific ARNs, and mandatory conditions (MFA/IP/Region) for high-risk tasks. |
 | **GCP** | Primitive roles (Owner/Editor) , public access (`allUsers`) , or unconditioned sensitive roles.
 
- | Predefined or custom roles only, no public members, and specific identifiers with CEL conditions.
-
- |
+ | Predefined or custom roles only, no public members, and specific identifiers with CEL conditions |
 
 ---
 
@@ -59,16 +52,13 @@ Policies are classified as **WEAK** or **STRONG** based on provider-specific sec
 
 The system has been validated against a dataset of 13 policies (8 AWS, 5 GCP) covering common misconfigurations and hardened standards.
 
-* 
-**AWS Accuracy:** 100% ($8/8$ policies correctly identified).
+* **AWS Accuracy:** 100% ($8/8$ policies correctly identified).
 
 
-* 
-**GCP Accuracy:** 100% ($5/5$ policies correctly identified).
+* **GCP Accuracy:** 100% ($5/5$ policies correctly identified).
 
 
-* 
-**Total Agreement:** 100%.
+* **Total Agreement:** 100%.
 
 
 
