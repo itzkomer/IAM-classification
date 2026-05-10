@@ -1,6 +1,4 @@
 """
-Part 3 of the Assignment
-
 Single entry point for any supported cloud provider.
 Auto-detects the provider from the policy JSON shape, then
 delegates to the appropriate agent.
