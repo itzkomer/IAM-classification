@@ -1,6 +1,4 @@
 """
-Part 2 of the Assignment
-
 Runs the agent on 8 labelled policies, then prints:
   • Per-policy verdict table with match indicator and elapsed time
   • Agreement rate and average latency time
